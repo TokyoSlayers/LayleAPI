@@ -12,11 +12,11 @@ public class MySQLStartEvent extends Event {
 
     private static final HandlerList HANDLERS_LIST = new HandlerList();
 
-    public MySQLStartEvent(String host, String database, int port, String user, String password)  {
-        MySQL.connect(host, database, port, user, password);
+    public MySQLStartEvent(String host, String database, String port, String user, String password)  {
+        MySQL.connect(host, database, Integer.parseInt(port), user, password);
         if (!MySQL.isConnected()) {
             MySQL.disconnect();
-            MySQL.connect(host, database, port, user, password);
+            MySQL.connect(host, database, Integer.parseInt(port), user, password);
             System.out.println("MySQL ckeck REDEMARER !");
         } else {
             System.out.println("MySQL check OK !");
