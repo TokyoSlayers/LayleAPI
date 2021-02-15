@@ -1,36 +1,12 @@
-package net.TokyoSlayer.LayleAPI.Finish.Event;
+package net.TokyoSlayer.LayleAPI.Finish.Utils;
 
 import net.TokyoSlayer.LayleAPI.Finish.Utils.MySQL;
-import org.bukkit.Bukkit;
-import org.bukkit.event.Event;
-import org.bukkit.event.HandlerList;
-import org.jetbrains.annotations.NotNull;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MySQLSendEvent extends Event {
-
-    private static final HandlerList HANDLERS_LIST = new HandlerList();
-
-    public MySQLSendEvent(String state, String serverName, int tps) {
-        createTable();
-        if(getStatement(serverName).isEmpty()){
-            createStatement(state,serverName,tps);
-        }else{
-            setStatement(state,serverName);
-        }
-    }
-
-    public MySQLSendEvent(int tps,int PlayerSize,String serverName){
-        if(getNumberPlayer(serverName) != PlayerSize){
-            setNumberPlayer(PlayerSize,serverName);
-        }
-        if(getTps(serverName) != tps){
-            setTps(tps,serverName);
-        }
-    }
+public class Statement {
 
     public void createTable(){
         try {
@@ -126,11 +102,5 @@ public class MySQLSendEvent extends Event {
             e.printStackTrace();
         }
         return dif;
-    }
-
-    @NotNull
-    @Override
-    public HandlerList getHandlers() {
-        return HANDLERS_LIST;
     }
 }
