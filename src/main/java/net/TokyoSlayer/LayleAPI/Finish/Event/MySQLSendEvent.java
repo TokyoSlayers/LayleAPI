@@ -22,8 +22,19 @@ public class MySQLSendEvent extends Event {
             setStatement(state,serverName);
         }
     }
-
+    public MySQLSendEvent(String state,String serverName,int tps,int PlayerSize){
+        createTable();
+        if(getNumberPlayer(serverName) != PlayerSize){
+            setStatement(state,serverName);
+            setNumberPlayer(PlayerSize,serverName);
+        }
+        if(getTps(serverName) != tps){
+            setTps(tps,serverName);
+            setStatement(state,serverName);
+        }
+    }
     public MySQLSendEvent(int tps,int PlayerSize,String serverName){
+        createTable();
         if(getNumberPlayer(serverName) != PlayerSize){
             setNumberPlayer(PlayerSize,serverName);
         }

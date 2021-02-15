@@ -12,7 +12,7 @@ public class MySQLReloadEvent extends Event {
 
     private static final HandlerList HANDLERS_LIST = new HandlerList();
 
-    public MySQLReloadEvent(int iReload,String host,String database,String port,String user,String password) {
+    public MySQLReloadEvent(int iReload,String host,String database,int port,String user,String password) {
         int reload = iReload*20;
         new BukkitRunnable() {
             @Override
@@ -22,7 +22,7 @@ public class MySQLReloadEvent extends Event {
                 if (counter == reload) {
                     if (!MySQL.isConnected()) {
                         MySQL.disconnect();
-                        MySQL.connect(host, database, Integer.parseInt(port), user, password);
+                        MySQL.connect(host, database, port, user, password);
                         System.out.println("MySQL ckeck REDEMARER !");
                     } else {
                         System.out.println("MySQL check OK !");
