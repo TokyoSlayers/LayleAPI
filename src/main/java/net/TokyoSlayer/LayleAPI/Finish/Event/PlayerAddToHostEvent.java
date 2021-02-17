@@ -15,12 +15,12 @@ public class PlayerAddToHostEvent extends Event {
     private static final HandlerList HANDLERS_LIST = new HandlerList();
     HashMap<UUID, PermissionAttachment> perms = new HashMap<>();
 
-    public PlayerAddToHostEvent(Player player, Plugin plugin,String permission) {
+    public PlayerAddToHostEvent(Player player, Plugin plugin) {
         if(player.hasPermission("HubLayle.host") && player.getServer().getOnlinePlayers().size() ==0){
             PermissionAttachment attachment = player.addAttachment(plugin);
             perms.put(player.getUniqueId(), attachment);
             PermissionAttachment pperms = perms.get(player.getUniqueId());
-            pperms.setPermission(permission, true);
+            pperms.setPermission("HubLayle.host.ok", true);
         }
     }
 

@@ -15,11 +15,11 @@ public class PlayerRemoveToHostEvent extends Event {
     private static final HandlerList HANDLERS_LIST = new HandlerList();
     HashMap<UUID, PermissionAttachment> perms = new HashMap<>();
 
-    public PlayerRemoveToHostEvent(Player player, Plugin plugin,String permission) {
+    public PlayerRemoveToHostEvent(Player player, Plugin plugin) {
         if(player.hasPermission("HubLayle.host") && player.getServer().getOnlinePlayers().size() ==0){
             PermissionAttachment attachment = player.addAttachment(plugin);
             perms.put(player.getUniqueId(), attachment);
-            perms.get(player.getUniqueId()).unsetPermission(permission);
+            perms.get(player.getUniqueId()).unsetPermission("HubLayle.host.ok");
         }
     }
 
